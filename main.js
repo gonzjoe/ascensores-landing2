@@ -251,19 +251,56 @@
                         grecaptcha.execute('6LcSjpMsAAAAAC7dF4KV2XgQzF5GIO-jz1tFzl4i', {action: 'submit'}).then(function(token) {
                             document.getElementById('recaptchaToken').value = token;
                             
-                            // Success - show message (in production, would send to server with token)
+                            
+                            const formData = {
+                                name: contactForm.querySelector('#name').value,
+                                email: contactForm.querySelector('#email').value,
+                                phone: contactForm.querySelector('#phone').value,
+                                service: contactForm.querySelector('#service').value,
+                                message: contactForm.querySelector('#message').value,
+                                recaptchaToken: token
+                            };
+
                             const submitBtn = contactForm.querySelector('button[type="submit"]');
                             const originalText = submitBtn.innerHTML;
-                            submitBtn.innerHTML = '<span>Enviado</span>';
-                            submitBtn.style.background = '#10b981';
-                            submitBtn.style.color = '#fff';
+                            submitBtn.innerHTML = '<span>Enviando...</span>';
+                            submitBtn.disabled = true;
 
-                            setTimeout(() => {
+                            fetch('enviar_correo.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(formData)
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    submitBtn.innerHTML = '<span>Enviado</span>';
+                                    submitBtn.style.background = '#10b981';
+                                    submitBtn.style.color = '#fff';
+                                    contactForm.reset();
+                                } else {
+                                    alert('Hubo un error al enviar el mensaje: ' + data.message);
+                                    submitBtn.innerHTML = originalText;
+                                    submitBtn.disabled = false;
+                                }
+                            })
+                            .catch(error => {
+                                alert('Ocurrió un error en el servidor. Inténtalo de nuevo.');
                                 submitBtn.innerHTML = originalText;
-                                submitBtn.style.background = '';
-                                submitBtn.style.color = '';
-                                contactForm.reset();
-                            }, 3000);
+                                submitBtn.disabled = false;
+                            })
+                            .finally(() => {
+                                setTimeout(() => {
+                                    if(submitBtn.innerHTML.includes('Enviado')) {
+                                        submitBtn.innerHTML = originalText;
+                                        submitBtn.style.background = '';
+                                        submitBtn.style.color = '';
+                                    }
+                                    submitBtn.disabled = false;
+                                }, 4000);
+                            });
                         });
                     });
                 } else {
