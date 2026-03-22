@@ -248,7 +248,7 @@
                 // Ejecutar reCAPTCHA invisible v3
                 if (typeof grecaptcha !== 'undefined') {
                     grecaptcha.ready(function() {
-                        grecaptcha.execute('TU_CLAVE_DE_SITIO_AQUI', {action: 'submit'}).then(function(token) {
+                        grecaptcha.execute('6LcSjpMsAAAAAC7dF4KV2XgQzF5GIO-jz1tFzl4i', {action: 'submit'}).then(function(token) {
                             document.getElementById('recaptchaToken').value = token;
                             
                             // Success - show message (in production, would send to server with token)
