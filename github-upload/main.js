@@ -245,19 +245,30 @@
                     this.style.animation = '';
                 }, 500);
             } else {
-                // Success - show message (in production, would send to server)
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<span>Enviado</span>';
-                submitBtn.style.background = '#10b981';
-                submitBtn.style.color = '#fff';
+                // Ejecutar reCAPTCHA invisible v3
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.ready(function() {
+                        grecaptcha.execute('TU_CLAVE_DE_SITIO_AQUI', {action: 'submit'}).then(function(token) {
+                            document.getElementById('recaptchaToken').value = token;
+                            
+                            // Success - show message (in production, would send to server with token)
+                            const submitBtn = contactForm.querySelector('button[type="submit"]');
+                            const originalText = submitBtn.innerHTML;
+                            submitBtn.innerHTML = '<span>Enviado</span>';
+                            submitBtn.style.background = '#10b981';
+                            submitBtn.style.color = '#fff';
 
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                    submitBtn.style.color = '';
-                    this.reset();
-                }, 3000);
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.style.background = '';
+                                submitBtn.style.color = '';
+                                contactForm.reset();
+                            }, 3000);
+                        });
+                    });
+                } else {
+                    console.error("Error: reCAPTCHA no está cargado.");
+                }
             }
         });
 
