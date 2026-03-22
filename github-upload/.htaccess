@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Evitar listar directorios
+Options -Indexes
+
+# Redirigir de .html a la URL limpia (SEO 301)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
+RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
+
+# Resolver internamente las URLs limpias añadiendo .html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Forzar HTTPS (Opcional, recomendado para producción)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
