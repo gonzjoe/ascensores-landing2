@@ -1,7 +1,7 @@
 <?php
 // Configuración básica del correo
 $to = "info@ascensoreswolfgroup.com";
-$recaptcha_secret = "6LcSjpMsAAAAAOU8xmXniXQYOyY_kxfVQcSZQrKR"; // Clave secreta obtenida del usuario
+$recaptcha_secret = getenv('RECAPTCHA_SECRET'); // Clave secreta obtenida del usuario
 
 // Asegurar que recibimos la petición por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
