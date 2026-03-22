@@ -10,7 +10,11 @@ DirectorySlash Off
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [L]
 
-# No aplicar reescritura si ya es un directorio físico que existe
+# Forzar /servicios a cargar servicios.html aunque exista la carpeta
+RewriteCond %{REQUEST_URI} ^/servicios$ [NC]
+RewriteRule ^(.*)$ servicios.html [L]
+
+# No aplicar reescritura si ya es un directorio físico que existe (excepto servicios)
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
