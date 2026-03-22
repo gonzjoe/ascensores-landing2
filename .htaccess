@@ -3,13 +3,19 @@ RewriteEngine On
 # Evitar listar directorios
 Options -Indexes
 
+# Prevenir que Apache añada la barra final a los directorios (evita el 403 y los enlaces rotos)
+DirectorySlash Off
+
+# Quitar la barra final si alguien la escribe (Redirección 301)
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
 # Redirigir de .html a la URL limpia (SEO 301)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
 RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
 
 # Resolver internamente las URLs limpias añadiendo .html
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
+# Revisamos si existe el archivo .html correspondiente en lugar del directorio
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
 # Forzar HTTPS (Opcional, recomendado para producción)
