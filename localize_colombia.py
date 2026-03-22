@@ -8,12 +8,12 @@ replacements = {
     "+34-900-000-000": "+57-300-000-0000",
     "Comuníquese Urgente al 900": "Línea Urgente +57 300",
     "Calle Principal 123": "Bocagrande, Cra 2 # 12-34",
-    "\"Madrid\"": "\"Cartagena de Indias\"",
+    "\"Madrid\"": "\"Cartagena\"",
     "\"ES\"": "\"CO\"",
     "toda España": "toda Colombia",
     "en España": "en Colombia",
-    "Calle Example, 123<br>28001 Madrid, España": "Bocagrande, Cra 2 # 12-34<br>130001 Cartagena de Indias, Colombia",
-    "MAPA - Calle Example, 123, Madrid": "MAPA - Cartagena de Indias, Colombia",
+    "Calle Example, 123<br>28001 Madrid, España": "Bocagrande, Cra 2 # 12-34<br> Cartagena, Colombia",
+    "MAPA - Calle Example, 123, Madrid": "MAPA - Cartagena, Colombia",
     "+34 900 000 000": "+57 300 000 0000"
 }
 

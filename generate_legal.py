@@ -22,7 +22,7 @@ for filename, (title, desc) in pages.items():
         <div class="container">
             <h1 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 2rem; color: var(--color-accent);">{title}</h1>
             <p style="color: var(--color-text-muted); font-size: 1.125rem; max-width: 800px; line-height: 1.8;">{desc}</p>
-            <p style="color: var(--color-text-dim); margin-top: 2rem;">Última actualización: Marzo de 2026. Cartagena de Indias, Colombia.</p>
+            <p style="color: var(--color-text-dim); margin-top: 2rem;">Última actualización: Marzo de 2026. Cartagena, Colombia.</p>
         </div>
     </section>
 {footer_part}"""
