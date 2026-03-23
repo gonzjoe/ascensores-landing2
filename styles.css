@@ -3518,3 +3518,57 @@ body.cursor-active * {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+/* =============================================
+   Cobertura Section
+   ============================================= */
+.cobertura {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg);
+    position: relative;
+}
+
+.cobertura__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-xl);
+    text-align: center;
+    margin-top: var(--space-2xl);
+}
+
+.cobertura__item {
+    padding: var(--space-lg);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.cobertura__item:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 90, 169, 0.1);
+}
+
+.cobertura__icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-accent);
+    margin-bottom: var(--space-xs);
+}
+
+.cobertura__city {
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .cobertura__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+    }
+}
