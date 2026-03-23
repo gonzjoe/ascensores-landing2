@@ -249,8 +249,8 @@
                 if (typeof grecaptcha !== 'undefined') {
                     grecaptcha.ready(function() {
                         grecaptcha.execute('6LcSjpMsAAAAAC7dF4KV2XgQzF5GIO-jz1tFzl4i', {action: 'submit'}).then(function(token) {
+                            // Asignar token al campo oculto por si acaso
                             document.getElementById('recaptchaToken').value = token;
-                            
                             
                             const formData = {
                                 name: contactForm.querySelector('#name').value,
