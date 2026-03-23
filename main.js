@@ -6,72 +6,7 @@
 (function() {
     'use strict';
 
-    // ============================================
-    // Custom Cursor
-    // ============================================
-    const initCustomCursor = () => {
-        // Don't show custom cursor on mobile/tablet
-        if (window.matchMedia('(max-width: 1024px)').matches) {
-            document.body.classList.remove('cursor-active');
-            return;
-        }
-
-        // Create cursor elements
-        const cursor = document.createElement('div');
-        cursor.className = 'custom-cursor';
-        document.body.appendChild(cursor);
-
-        const cursorDot = document.createElement('div');
-        cursorDot.className = 'custom-cursor__dot';
-        document.body.appendChild(cursorDot);
-
-        // Enable custom cursor
-        document.body.classList.add('cursor-active');
-
-        // Track mouse position
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        // Smooth cursor follow
-        const animateCursor = () => {
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-
-            cursorX += dx * 0.15;
-            cursorY += dy * 0.15;
-
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-
-            cursorDot.style.left = mouseX + 'px';
-            cursorDot.style.top = mouseY + 'px';
-
-            requestAnimationFrame(animateCursor);
-        };
-        animateCursor();
-
-        // Hover states for interactive elements
-        const hoverElements = document.querySelectorAll('a, button, .servicio-card, .feature, .testimonial, input, textarea, select, .nav__link, .footer__list a');
-
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
-
-        // Click states
-        document.addEventListener('mousedown', () => cursor.classList.add('hover--click'));
-        document.addEventListener('mouseup', () => cursor.classList.remove('hover--click'));
-    };
-
-    // Initialize custom cursor
-    initCustomCursor();
+    // Custom Cursor removed for compatibility (v2.4)
 
     // ============================================
     // Mobile Menu Toggle
