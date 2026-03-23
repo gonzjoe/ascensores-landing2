@@ -3,9 +3,6 @@ RewriteEngine On
 # Evitar listar directorios
 Options -Indexes
 
-# Cuando LiteSpeed devuelva 403 en /servicios, mostrar servicios.html
-ErrorDocument 403 /servicios.html
-
 # Prevenir que Apache añada la barra final a los directorios
 DirectorySlash Off
 
@@ -13,20 +10,21 @@ DirectorySlash Off
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [L]
 
-# Forzar /servicios a cargar servicios.html aunque exista la carpeta
-RewriteCond %{REQUEST_URI} ^/servicios/?$ [NC]
-RewriteRule ^servicios/?$ servicios.html [L]
+# Forzar /servicios (exacto, sin barra final) a cargar servicios.html
+RewriteRule ^servicios$ servicios.html [L]
 
-# No aplicar reescritura si ya es un directorio físico que existe (excepto /servicios)
+# Forzar /servicios/ (con barra final) a cargar servicios.html
+RewriteRule ^servicios/$ servicios.html [L]
+
+# No aplicar reescritura si ya es un directorio (excepto la carpeta servicios)
 RewriteCond %{REQUEST_URI} !^/servicios/?$
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Intentar cargar el archivo con extensión .html si se solicita sin ella
-# Usa DOCUMENT_ROOT para resolver la ruta absoluta (funciona en raíz Y subdirectorios)
-RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}.html -f
-RewriteRule ^(.+)$ /$1.html [L]
+# Resolver URLs limpias añadiendo .html (funciona en raíz Y en /servicios/)
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+RewriteRule ^(.+)$ $1.html [L]
 
-# Forzar HTTPS (Opcional, recomendado para producción)
+# Forzar HTTPS (descomentar en producción si se desea)
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
