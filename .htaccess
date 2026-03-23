@@ -3,6 +3,9 @@ RewriteEngine On
 # Evitar listar directorios
 Options -Indexes
 
+# Cuando LiteSpeed devuelva 403 en /servicios, mostrar servicios.html
+ErrorDocument 403 /servicios.html
+
 # Prevenir que Apache añada la barra final a los directorios
 DirectorySlash Off
 
