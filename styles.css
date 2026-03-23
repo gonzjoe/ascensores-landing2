@@ -3569,7 +3569,7 @@ body.cursor-active * {
     margin-bottom: var(--space-xs);
 }
 
-.cobertura__city {
+.cobertura__city { margin: 0; 
     font-weight: 600;
     color: var(--color-text);
     font-size: 1.1rem;
