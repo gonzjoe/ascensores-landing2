@@ -3448,6 +3448,7 @@ body.cursor-active * {
     gap: var(--space-md);
 }
 
+.marcas__item h3 { margin: 0; font-size: inherit; font-weight: inherit; color: inherit; }
 .marcas__item {
     display: flex;
     align-items: center;
@@ -3508,6 +3509,7 @@ body.cursor-active * {
         gap: var(--space-md);
     }
 
+.marcas__item h3 { margin: 0; font-size: inherit; font-weight: inherit; color: inherit; }
     .marcas__item {
         font-size: 0.9rem;
     }
