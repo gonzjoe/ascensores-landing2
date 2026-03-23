@@ -1404,8 +1404,8 @@ body.cursor-active * {
 }
 
 .footer__contact-icon {
-    width: 18px;
-    height: 18px;
+    width: 20px !important;
+    height: 20px !important;
     color: var(--color-accent);
     flex-shrink: 0;
 }
@@ -3609,12 +3609,12 @@ body.cursor-active * {
    ============================================= */
 .whatsapp-float {
     position: fixed;
-    width: 60px;
-    height: 60px;
+    width: 60px !important;
+    height: 60px !important;
     bottom: 40px;
     right: 40px;
     background-color: #25d366;
-    color: #FFF;
+    color: #FFF !important;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -3626,8 +3626,9 @@ body.cursor-active * {
 }
 
 .whatsapp-float svg {
-    width: 34px;
-    height: 34px;
+    width: 32px !important;
+    height: 32px !important;
+    fill: #FFF !important;
 }
 
 .whatsapp-float:hover {
