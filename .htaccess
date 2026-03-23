@@ -11,17 +11,20 @@ RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [L]
 
 # Forzar /servicios a cargar servicios.html aunque exista la carpeta
-RewriteCond %{REQUEST_URI} ^/servicios$ [NC]
-RewriteRule ^(.*)$ servicios.html [L]
+RewriteCond %{REQUEST_URI} ^/servicios/?$ [NC]
+RewriteRule ^servicios/?$ servicios.html [L]
 
-# No aplicar reescritura si ya es un directorio físico que existe (excepto servicios)
+# No aplicar reescritura si ya es un directorio físico que existe (excepto /servicios)
+RewriteCond %{REQUEST_URI} !^/servicios/?$
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 # Intentar cargar el archivo con extensión .html si se solicita sin ella
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.*)$ $1.html [L]
+# Usa DOCUMENT_ROOT para resolver la ruta absoluta (funciona en raíz Y subdirectorios)
+RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}.html -f
+RewriteRule ^(.+)$ /$1.html [L]
 
 # Forzar HTTPS (Opcional, recomendado para producción)
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+

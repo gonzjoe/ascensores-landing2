@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Cuando alguien accede EXACTAMENTE a /servicios o /servicios/, redirigir a servicios.html en la raiz
+RewriteRule ^$ /servicios.html [L,R=301]
+
+# Resolver internamente los archivos sin .html dentro de esta carpeta
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/servicios/%{REQUEST_URI}.html -f
+RewriteRule ^(.+)$ $1.html [L]
