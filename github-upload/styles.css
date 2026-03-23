@@ -187,8 +187,9 @@ body.cursor-active * {
 }
 
 .header--scrolled {
-    background: rgba(10, 10, 10, 0.9);
-    backdrop-filter: blur(20px);
+    background: #000000 !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .header__bg {
