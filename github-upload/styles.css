@@ -153,16 +153,16 @@ a, button, .nav__link, .footer__list a {
 
 /* Cursor on links and buttons */
 a, button, .servicio-card, .feature, .testimonial, input, textarea, select {
-    cursor: none;
+    cursor: auto;
 }
 
 /* Hide default cursor on body when custom cursor is active */
 body.cursor-active {
-    cursor: none;
+    cursor: auto;
 }
 
 body.cursor-active * {
-    cursor: none !important;
+    cursor: auto !important;
 }
 
 /* Container */
