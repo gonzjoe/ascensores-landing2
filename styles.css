@@ -3629,3 +3629,23 @@ body.cursor-active * {
         height: 30px;
     }
 }
+
+/* =============================================
+   Legal Sections & Overlap Fix (v2.8)
+   ============================================= */
+.legal-section {
+    min-height: 60vh;
+}
+
+@media (max-width: 768px) {
+    .legal-section {
+    }
+}
+
+/* Force Logo link color reset */
+a.logo, .footer__brand .logo {
+}
+
+.logo__text {
+}
+
